@@ -21,6 +21,17 @@ select store_id, c.city, country from store s
 	inner join country co 
 		ON c.country_id = co.country_id;
  
- select * from store sto
-	inner join staff sta
-		on sto.staff_id = sta.staff_id;
+select sto.store_id, sum(p.amount) from store sto
+	inner join customer cu
+		on sto.store_id = cu.store_id
+    inner join payment p
+		on cu.customer_id = p.customer_id
+group by sto.store_id
+;
+        
+select c.name, avg(f.length) from film f 
+	inner join film_category fc
+		on f.film_id = fc.film_id
+	inner join category c on fc.category_id = c.category_id
+group by c.name;
+    
